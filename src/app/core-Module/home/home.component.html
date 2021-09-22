@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div *ngIf="loading" class="d-flex justify-content-center spinner-top">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <div *ngIf="error" class="d-flex justify-content-center spinner-top">
+            <div class="noFavorites"><i class="bi bi-exclamation-triangle"></i>Internal Error </div>
+        </div>
+
+        <div *ngIf="!loading && apodData" class="col-sm-12 col-xs-12 text-center  mt-4 margin-bottom">
+            <h1 class="fw-bold">Astronomy Picture of the Day</h1>
+            <div infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollThrottle]="throttle"
+                (scrolled)="onScrollDown()">
+
+
+                <div *ngFor="let data of apodData">
+                    <div *ngIf="data.media_type =='image'">
+
+                        <div class="card cardContainer">
+                            <img [src]="data.url" class="card-img-top" [alt]="data.title">
+                            <div class="card-body">
+                                <div class="d-flex bd-highlight mb-2">
+                                    <div class="bd-highlight">{{data.date | date:'d MMM yyyy'}}</div>
+
+                                    <div class="ms-auto bd-highlight isfavorite" (click)="addToFavorite(data)"> <i
+                                            [ngClass]="favIcon(data)"></i>
+                                    </div>
+                                </div>
+                                <h5 class="text-start">{{data.title}}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

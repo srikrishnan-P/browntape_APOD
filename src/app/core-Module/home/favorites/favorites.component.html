@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div *ngIf="favoriteList && favoriteList.length==0" class="d-flex justify-content-center spinner-top">
+            <div class="noFavorites"> <i class="bi bi-exclamation-triangle"></i> No Favorites Added</div>
+        </div>
+
+        <div *ngIf="error" class="d-flex justify-content-center spinner-top">
+            <div class="noFavorites"><i class="bi bi-exclamation-triangle"></i>Internal Error </div>
+        </div>
+
+        <div *ngIf="favoriteList && favoriteList.length > 0"
+            class="col-sm-12 col-xs-12 text-center  mt-4 margin-bottom">
+            <h1 class="fw-bold">My Favorites</h1>
+            <div *ngFor="let data of favoriteList">
+                <div *ngIf="data.media_type =='image'">
+
+                    <div class="card cardContainer">
+                        <img [src]="data.url" class="card-img-top" [alt]="data.title">
+                        <div class="card-body">
+                            <div class="d-flex bd-highlight mb-2">
+                                <div class="bd-highlight">{{data.date | date:'d MMM yyyy'}}</div>
+
+                                <div class="ms-auto bd-highlight isfavorite" (click)="removefavorites(data)"> <i
+                                        class="bi bi-heart-fill"></i></div>
+                            </div>
+                            <h5 class="text-start">{{data.title}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

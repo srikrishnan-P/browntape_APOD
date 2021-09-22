@@ -1,0 +1,29 @@
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffff;
+  color: #313131;
+  text-align: center;
+  height: 65px;
+  border-top: 1px solid #313131;
+}
+
+.bi {
+  font-size: 22px;
+}
+
+.borderRight {
+  border-right: 1px solid #313131;
+}
+
+.TabText {
+  color: #313131;
+  text-decoration: none;
+}
+
+.active {
+  color: #0d6efd;
+  text-decoration: none;
+}
